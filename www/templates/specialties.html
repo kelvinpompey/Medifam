@@ -1,0 +1,13 @@
+<ion-view title="Specialties">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="specialty in specialties" href="#/app/specialties/{{specialty.id}}" class="item-icon-right">        
+        {{specialty.get('title')}}
+        <i class="icon ion-ios-arrow-forward"></i>  
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
