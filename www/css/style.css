@@ -1,4 +1,30 @@
 /* Empty. Add your own CSS if you like */
+
+body {
+  background-color: aliceblue; 
+}
+
+#welcome {
+  /*
+	background-image: url('/img/medifam-transparent.png');
+	background-color: white; 
+	background-size: 100% 300px;
+	background-repeat: no-repeat;
+  */ 
+  background-color: aliceblue; 
+
+}
+
+#welcome h1 {
+
+  
+  text-align: center; 
+  font-family: cursive;
+  color: green;
+  font-size: 72px; 
+  
+}
+
 .center {
     display: block; 
     margin-left: auto; 

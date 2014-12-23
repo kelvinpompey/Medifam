@@ -8,7 +8,7 @@
   </ion-nav-buttons>    
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="member in members" href="#/app/specialties/{{specialty.id}}" class="item-icon-right item-avatar">
+      <ion-item ng-repeat="member in members" href="#/app/messages/{{member.id}}" class="item-icon-right item-avatar">
         <img ng-src="{{member.get('profileImage').url()}}" width="75" height="75"/>  
         {{member.get('fullName')}}
         <i class="icon ion-ios-arrow-forward"></i>  

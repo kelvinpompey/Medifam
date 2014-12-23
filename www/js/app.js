@@ -110,9 +110,16 @@ angular.module('medifam', ['ionic', 'medifam.controllers', 'medifam.services', '
           controller: 'SpecialtyDetailCtrl'
         }
       }
-    })  
-  
-  ;
+    })
+    .state('app.messages', {
+      url: "/messages/:id",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/messages.html",
+          controller: 'MessagesCtrl'
+        }
+      }
+    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/welcome');
 });
