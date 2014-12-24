@@ -10,6 +10,17 @@ angular.module('medifam.services', [])
     }
     
 })
+.factory('Message', function(){
+	return {
+		send: function(params) {
+			var message = new Parse.Object('Message'); 
+			message.set("from", params.from); 
+			message.set("to", params.to); 
+			message.set("text", params.text); 
+			return message.save(); 
+		}
+	}
+})
 .factory('Push', function($rootScope, $cordovaPush){
 	var androidConfig = {
 		"senderID": "966734857442"
