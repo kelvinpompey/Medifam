@@ -1,6 +1,6 @@
 
 angular.module('medifam.controllers')
-.controller('WelcomeCtrl', function($window, $state, $scope, $ionicModal, $rootScope, Push){  
+.controller('WelcomeCtrl', function($window, $state, $scope, $ionicModal, $timeout, $rootScope, Push){  
     
     $scope.myStyle = {height: ($window.innerHeight - 100) + 'px'}; 
     Parse.initialize("b9x7EC9SNIUX5DB5mxrt8yzF9eduW0Js4kkR6Jcf", "pCqIyIaYhXx3sH0weqnkEKGGqo5rt3UVe6pZOJA7");
@@ -46,20 +46,38 @@ angular.module('medifam.controllers')
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
-      
+      /*
       Parse.User.logIn($scope.loginData.username, $scope.loginData.password, {
           success: function() {
               console.log('logged in successfully'); 
               $rootScope.currentUser = Parse.User.current(); 
               $state.go('app.specialties'); 
+              $timeout(function() {
+                delete $scope.loginError; 
+              });             
+              $scope.closeLogin(); 
               Push.register();               
           }, 
-          error: function() {
+          error: function(user, error) {
+              $timeout(function() {
+                $scope.loginError = error; 
+              });            
               console.log('error logging in'); 
           }
-      }); 
-      
-      $scope.closeLogin();
+      }); */ 
+    Parse.User.logIn($scope.loginData.username, $scope.loginData.password)
+    .then(function(){
+      console.log('logged in successfully'); 
+      $rootScope.currentUser = Parse.User.current(); 
+      $state.go('app.specialties');       
+      delete $scope.loginError;      
+      $scope.closeLogin(); 
+      Push.register(); 
+    })
+    .fail(function(error){
+      $scope.loginError = error; 
+      console.log('error logging in');
+    })      
   };
      
   $scope.doRegister = function() {
