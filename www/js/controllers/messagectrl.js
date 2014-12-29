@@ -1,5 +1,5 @@
 angular.module('medifam.controllers')
-.controller('MessagesCtrl', function($window, $scope, $stateParams, $ionicModal, Message, $cordovaImagePicker){
+.controller('MessagesCtrl', function($window, $scope, $stateParams, $ionicModal, Message, $cordovaImagePicker, $ionicNavBarDelegate){
     $scope.style = {'margin-top': '40px', height: ($window.innerHeight - 100) + 'px'}; 
 	$scope.chatboxStyle = {position: 'fixed', bottom: '0px', width: '100%'}; 
 
@@ -27,6 +27,7 @@ angular.module('medifam.controllers')
 		query.get($stateParams.id).then(function(user){
 			console.log('user'); 
 			$scope.user = user; 
+			$ionicNavBarDelegate.setTitle(user.get('fullName')); 
 			var sentQuery = new Parse.Query('Message'); 
 			var receivedQuery = new Parse.Query('Message'); 
 			sentQuery.equalTo('from', user);
