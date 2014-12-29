@@ -7,12 +7,36 @@
   </ion-nav-buttons>
 
 
-  <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="message in messages" href="#/app/specialties/{{specialty.id}}" class="item-icon-right">        
-        {{message.get('text')}}
-        <i class="icon ion-ios-arrow-forward"></i>  
-      </ion-item>
-    </ion-list>
-  </ion-content>
+  <ion-pane>
+    <ion-scroll ng-style="style">
+      <ion-list>
+        <ion-item ng-repeat="message in messages" href="#/app/specialties/{{specialty.id}}" class="item-icon-right">        
+          {{message.get('text')}}
+          <i class="icon ion-ios-arrow-forward"></i>  
+        </ion-item>
+      </ion-list>
+  </ion-scroll>
+  <div ng-style="chatboxStyle">
+    <div class="row">
+        <input type="text" style="width: 100%" ng-model="messageData.text" placeholder="Enter Message"/>
+    </div>
+    <div>
+      <div style="width: 100%">
+        <a class="button icon ion-camera"></a>
+        <a class="button icon ion-mic-a"></a>        
+        <a class="button icon ion-paper-airplane" ng-click="doSendMessage()" style="position: absolute; right: 0"></a>        
+      </div>
+      
+        
+      
+    </div>
+
+  </div>
+  
+
+
+
+  
+
+  </ion-pane>
 </ion-view>

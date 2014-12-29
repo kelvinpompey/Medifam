@@ -1,5 +1,7 @@
 angular.module('medifam.controllers')
-.controller('MessagesCtrl', function($scope, $stateParams, $ionicModal, Message){
+.controller('MessagesCtrl', function($window, $scope, $stateParams, $ionicModal, Message, $cordovaImagePicker){
+    $scope.style = {'margin-top': '40px', height: ($window.innerHeight - 100) + 'px'}; 
+	$scope.chatboxStyle = {position: 'fixed', bottom: '0px', width: '100%'}; 
 
 	$scope.messageData = {}; 
 
@@ -53,5 +55,25 @@ angular.module('medifam.controllers')
 			fetchMessages(); 
 		})
 	}; 
+
+	$scope.addPhoto = function() {
+
+	  var options = {
+	   maximumImagesCount: 10,
+	   width: 800,
+	   height: 800,
+	   quality: 80
+	  };
+
+	  $cordovaImagePicker.getPictures(options)
+	    .then(function (results) {
+	      for (var i = 0; i < results.length; i++) {
+	        console.log('Image URI: ' + results[i]);
+	      }
+	    }, function(error) {
+	      // error getting photos
+	    });
+	}; 
+
 
 });

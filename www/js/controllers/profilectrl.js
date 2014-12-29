@@ -1,5 +1,5 @@
 angular.module('medifam.controllers')
-.controller('ProfileCtrl', function($scope, $timeout, $rootScope, $ionicNavBarDelegate, $ionicModal, Specialty, Push){    
+.controller('ProfileCtrl', function($scope, $timeout, $rootScope, $ionicNavBarDelegate, $ionicModal, Specialty, Push, $cordovaImagePicker){    
     
     console.log('imagePicker: ', window.imagePicker); 
     $scope.image = '';

@@ -118,6 +118,13 @@ angular.module('medifam.controllers', ['ngCordova'])
 })
 
 .controller('WelcomeCtrl', function($window, $state, $scope, $ionicModal, $rootScope, Push){
+
+window.addEventListener('native.keyboardshow', keyboardShowHandler);
+
+function keyboardShowHandler(e){
+    alert('Keyboard height is: ' + e.keyboardHeight);
+}
+  
     
     $scope.myStyle = {height: ($window.innerHeight - 100) + 'px'}; 
     Parse.initialize("b9x7EC9SNIUX5DB5mxrt8yzF9eduW0Js4kkR6Jcf", "pCqIyIaYhXx3sH0weqnkEKGGqo5rt3UVe6pZOJA7");
@@ -167,8 +174,8 @@ angular.module('medifam.controllers', ['ngCordova'])
           success: function() {
               console.log('logged in successfully'); 
               $rootScope.currentUser = Parse.User.current(); 
-              Push.register(); 
               $state.go('app.specialties'); 
+              Push.register();               
           }, 
           error: function() {
               console.log('error logging in'); 
