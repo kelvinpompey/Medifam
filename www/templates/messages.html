@@ -10,9 +10,9 @@
   <ion-pane>
     <ion-scroll ng-style="style">
       <ion-list>
-        <ion-item ng-repeat="message in messages" href="#/app/specialties/{{specialty.id}}" class="item-icon-right">        
-          {{message.get('text')}}
-          <i class="icon ion-ios-arrow-forward"></i>  
+        <ion-item ng-repeat="message in messages | orderBy:'createdAt'" href="#/app/specialties/{{specialty.id}}" class="item-icon-right">        
+          <h2>{{message.get('text')}}</h2>
+          <p am-time-ago="message.createdAt"></p>
         </ion-item>
       </ion-list>
   </ion-scroll>

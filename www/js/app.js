@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('medifam', ['ionic', 'medifam.controllers', 'medifam.services', 'parse-angular','ngCordova'])
+angular.module('medifam', ['ionic', 'medifam.controllers', 'medifam.services', 'parse-angular','ngCordova', 'angularMoment'])
 
 .run(function($ionicPlatform, $rootScope, $state, $cordovaPush, Push) {
     console.log('.run'); 
