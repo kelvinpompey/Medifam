@@ -37,8 +37,13 @@ angular.module('medifam.controllers')
 
 			sentQuery.find().then(function(data1){
 				receivedQuery.find().then(function(data2){
+						for(var i = 0; i < data2.length; i++) {
+							data2[i].sender = true; 
+						} 					
 						var messages = data1.concat(data2);
 						$scope.messages = messages; 
+						console.log('messages2: ', data1); 
+
 					}); 					
 			});		
 		}); 

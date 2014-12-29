@@ -41,3 +41,12 @@ body {
   top: 50%;
   transform: translateY(-50%);    
 }
+
+.left-margin {
+  margin-left: 50%; 
+}
+
+.right-margin {
+  margin-right: 50%; 
+}
+
