@@ -5,13 +5,12 @@ body {
 }
 
 #welcome {
-  /*
-	background-image: url('/img/medifam-transparent.png');
+  
+	background-image: url('/img/medifam_welcome.jpg');  
 	background-color: white; 
-	background-size: 100% 300px;
-	background-repeat: no-repeat;
-  */ 
-  background-color: aliceblue; 
+	background-size: 360px;
+	background-repeat: no-repeat; 
+  background-position: center top; 
 
 }
 
@@ -43,10 +42,10 @@ body {
 }
 
 .left-margin {
-  margin-left: 50%; 
+  margin-left: 25%; 
 }
 
 .right-margin {
-  margin-right: 50%; 
+  margin-right: 25%; 
 }
 
