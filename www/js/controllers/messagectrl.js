@@ -1,7 +1,17 @@
 angular.module('medifam.controllers')
-.controller('MessagesCtrl', function($window, $scope, $stateParams, $ionicModal, Message, $cordovaImagePicker, $ionicNavBarDelegate){
+.controller('MessagesCtrl', function($window, $scope, $stateParams, $ionicModal, Message, Image, $cordovaImagePicker, $ionicNavBarDelegate){
     $scope.style = {'margin-top': '40px', height: ($window.innerHeight - 100) + 'px'}; 
-	$scope.chatboxStyle = {position: 'fixed', bottom: '0px', width: '100%'}; 
+	$scope.chatboxStyle = { position: 'fixed', bottom: '0px', width: '100%'}; 
+	$scope.emergencyStyle = { position: 'absolute', right: '55px', color: 'yellow'};  	
+
+	$scope.toggleEmergency = function() {
+		if($scope.emergencyStyle.color === 'yellow') {
+			$scope.emergencyStyle.color = 'red';
+		}
+		else {
+			$scope.emergencyStyle.color = 'yellow';	
+		}
+	}
 
 	$scope.messageData = {}; 
 
@@ -55,6 +65,7 @@ angular.module('medifam.controllers')
 	$scope.doSendMessage = function() {
 		$scope.messageData.from = $scope.currentUser;
 		$scope.messageData.to = $scope.user;
+		$scope.messageData.emergencyCode = $scope.emergencyStyle.color; 
 		console.log('doSendMessage: ', $scope.messageData);
 		Message.send($scope.messageData).then(function(){
 			console.log('Message sent'); 
@@ -80,6 +91,34 @@ angular.module('medifam.controllers')
 	      // error getting photos
 	    });
 	}; 
+
+  $scope.imageSelect = function() {
+    Image.select()
+      .then(function (results) { 
+	        window.resolveLocalFileSystemURL(results[0], function(data){ 
+	            var fileEntry = data;
+	            fileEntry.file(function(data){
+	                console.log('fileEntry.file: ', data);
+	                var file = data;  
+	                var reader = new FileReader(); 
+	                reader.onload = function(e){
+	                    var base64 = this.result; 
+	                    console.log('reader loaded with this,result: ', this.result);
+	                    var parseFile = new Parse.File("image.png", {base64: base64});	                                        
+	                    $scope.messageData.image = parseFile; 
+	                    $scope.doSendMessage(); 
+	                }; 
+	                reader.readAsDataURL(file); 
+	                
+	            }); 
+	        });
+
+      }, function(error) {
+        // error getting photos
+      });       
+  }	
+
+
 
 
 });

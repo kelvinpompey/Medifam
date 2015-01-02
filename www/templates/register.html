@@ -6,7 +6,7 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doRegister()">
+    <form>
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Username</span>
@@ -39,7 +39,13 @@
         <label class="item item-input">
           <span class="input-label">Place of Work</span>
           <input type="text" ng-model="registrationData.work">
-        </label>        
+        </label>
+        <label class="item">
+          <button class="input-label button button-calm" ng-click="imageSelect()">Select Diploma</button>
+          <img width="100" height="100" ng-src="{{registrationData.diploma}}" class="center"/>
+        </label>
+
+
         <label class="item item-input">
           <span class="input-label">Password</span>
           <input type="password" ng-model="registrationData.password">

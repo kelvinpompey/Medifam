@@ -17,6 +17,8 @@ angular.module('medifam.services', [])
 			message.set("from", params.from); 
 			message.set("to", params.to); 
 			message.set("text", params.text); 
+			message.set("image", params.image); 
+			message.set("emergencyCode", params.emergencyCode); 
 			return message.save(); 
 		}
 	}
@@ -46,5 +48,21 @@ angular.module('medifam.services', [])
 			  });			
 		}
 	}		
+
+})
+.factory('Image', function($cordovaImagePicker){
+  var options = {
+   maximumImagesCount: 10,
+   width: 800,
+   height: 800,
+   quality: 80
+  };
+
+  return {
+  	select: function() {
+	  return $cordovaImagePicker.getPictures(options); 
+
+  	}
+  }
 
 });

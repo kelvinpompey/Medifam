@@ -6,7 +6,7 @@ body {
 
 #welcome {
   
-	background-image: url('/img/medifam_welcome.jpg');  
+	background-image: url('img/medifam_welcome.jpg');  
 	background-color: white; 
 	background-size: 360px;
 	background-repeat: no-repeat; 
@@ -48,4 +48,13 @@ body {
 .right-margin {
   margin-right: 25%; 
 }
+
+.red-style {
+  border-top: solid 10px red; 
+}
+
+.yellow-style {
+ border-top: solid 10px yellow;  
+}
+
 

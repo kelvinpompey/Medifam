@@ -1,6 +1,6 @@
 
 angular.module('medifam.controllers')
-.controller('WelcomeCtrl', function($window, $state, $scope, $ionicModal, $timeout, $rootScope, Push){  
+.controller('WelcomeCtrl', function($window, $state, $scope, $ionicModal, $timeout, $rootScope, Push, Image){  
     
     $scope.myStyle = {height: ($window.innerHeight - 100) + 'px'}; 
     Parse.initialize("b9x7EC9SNIUX5DB5mxrt8yzF9eduW0Js4kkR6Jcf", "pCqIyIaYhXx3sH0weqnkEKGGqo5rt3UVe6pZOJA7");
@@ -95,6 +95,16 @@ angular.module('medifam.controllers')
       .fail(function(error){
           console.log('error signing up ', error); 
       }); 
+  }
+
+  $scope.imageSelect = function() {
+    Image.select()
+      .then(function (results) {
+        $scope.registrationData.diploma = results[0]; 
+
+      }, function(error) {
+        // error getting photos
+      });       
   }
     
 
