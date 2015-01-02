@@ -19,6 +19,7 @@ angular.module('medifam.services', [])
 			message.set("text", params.text); 
 			message.set("image", params.image); 
 			message.set("emergencyCode", params.emergencyCode); 
+			message.set("audio", params.audio); 
 			return message.save(); 
 		}
 	}

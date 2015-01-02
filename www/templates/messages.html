@@ -13,6 +13,9 @@
         <ion-item ng-repeat="message in messages | orderBy:'createdAt'" class="item-icon-right item-text-wrap" ng-class="{'left-margin' : message.sender, 'right-margin' : !message.sender, 'red-style': message.get('emergencyCode') === 'red', 'yellow-style': message.get('emergencyCode') === 'yellow'}">        
           <p style="font-size: 16pt">{{message.get('text')}}</p>
           <img ng-src="{{message.get('image').url()}}" style="max-height: 200px" />
+          <div ng-if="message.get('audio')">
+            <button class="button icon ion-play" ng-click="toggleAudio(message)"></button>
+          </div>
           <i class="ion-clock"> </i><span am-time-ago="message.createdAt"></span>
         </ion-item>
       </ion-list>
@@ -24,7 +27,7 @@
     <div>
       <div style="width: 100%">
         <a class="button icon ion-camera" ng-click="imageSelect()"></a>
-        <a class="button icon ion-mic-a"></a>        
+        <a class="button icon ion-mic-a" ng-click="audioSelect()"></a>        
         <a class="button icon ion-record" ng-style="emergencyStyle" ng-click="toggleEmergency()"></a>
         <a class="button icon ion-paper-airplane" ng-click="doSendMessage()" style="position: absolute; right: 0"></a>        
       </div>
