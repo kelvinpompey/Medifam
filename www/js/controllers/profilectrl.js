@@ -117,12 +117,40 @@ angular.module('medifam.controllers')
       item.relation('members').add($scope.currentUser); 
       item.save(); 
   }
+
+  $scope.statuses = [
+    {title: 'Available'}, 
+    {title: 'In surgery'}, 
+    {title: 'In a meeting'}, 
+    {title: 'On call'}, 
+    {title: 'Off call'}
+
+
+  ]; 
+  $scope.selectStatusModal = function() {
+    $ionicModal.fromTemplateUrl('templates/status.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show(); 
+    });
+
+  }
   
+  $scope.selectStatus = function(item) {
+    console.log('status: ', item); 
+    $scope.currentUser.set('status', item.title); 
+    $scope.currentUser.save(); 
+    $scope.status = item; 
+  }
+
+
   $scope.refresh = function() {
       
   }
     
     if($scope.currentUser) {
+        $scope.status = {title: $scope.currentUser.get('status')}; 
         console.log('Profile for user ', $scope.currentUser.getUsername());
     
         $ionicNavBarDelegate.setTitle('Profile for ' + $scope.currentUser.getUsername()); 

@@ -1,0 +1,13 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Set Status</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeModal()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+      <ion-list>
+          <ion-item ng-repeat="s in statuses" ng-click="selectStatus(s)">{{s.title}}</ion-item>
+      </ion-list>
+  </ion-content>
+</ion-modal-view>
