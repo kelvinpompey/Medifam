@@ -1,5 +1,5 @@
 angular.module('medifam.controllers')
-.controller('MessagesCtrl', function($window, $scope, $stateParams, $ionicModal, Message, Image, $cordovaImagePicker, $ionicNavBarDelegate, $cordovaToast, $cordovaCapture){
+.controller('MessagesCtrl', function($window, $scope, $stateParams, $ionicModal, Message, Image, $cordovaImagePicker, $ionicNavBarDelegate, $cordovaToast, $cordovaCapture, Push){
     $scope.style = {'margin-top': '40px', height: ($window.innerHeight - 100) + 'px'}; 
 	$scope.chatboxStyle = { position: 'fixed', bottom: '0px', width: '100%'}; 
 	$scope.emergencyStyle = { position: 'absolute', right: '55px', color: 'yellow'};  	
@@ -69,7 +69,10 @@ angular.module('medifam.controllers')
 		console.log('doSendMessage: ', $scope.messageData);
 		Message.send($scope.messageData).then(function(){
 			console.log('Message sent'); 
-			$cordovaToast.showShortCenter("Message sent! :)");
+			if($cordovaToast.showShortCenter) {
+				$cordovaToast.showShortCenter("Message sent! :)");
+			}
+			Push.send($scope.user); 
 			fetchMessages(); 
 		})
 	}; 

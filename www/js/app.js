@@ -6,10 +6,30 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('medifam', ['ionic', 'medifam.controllers', 'medifam.services', 'parse-angular','ngCordova', 'angularMoment'])
 
-.run(function($ionicPlatform, $rootScope, $state, $cordovaPush, Push) {
+.run(function($ionicPlatform, $rootScope, $state, $cordovaPush, Push, $cordovaVibration) {
     console.log('.run'); 
   $ionicPlatform.ready(function() {
       console.log('ionic ready');
+
+    /*
+    cordova.plugins.backgroundMode.setDefaults({ text:'Medifam'});
+    // Enable background mode
+    cordova.plugins.backgroundMode.enable();
+
+    // Called when background mode has been activated
+    cordova.plugins.backgroundMode.onactivate = function () {
+        var time = 0; 
+        setInterval(function () {
+            // Modify the currently displayed notification
+            time += 5; 
+            $cordovaVibration.vibrate(500);
+            /*cordova.plugins.backgroundMode.configure({
+                text:'Running in background for more than ' + time + 's now.'
+            });
+        }, 5000);
+    }      
+    */ 
+
     $rootScope.currentUser = Parse.User.current(); 
     
     //console.log('WelcomeCtrl User: ', Parse.User.current()); 

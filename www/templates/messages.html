@@ -14,8 +14,9 @@
           <p style="font-size: 16pt">{{message.get('text')}}</p>
           <img ng-src="{{message.get('image').url()}}" style="max-height: 200px" />
           <div ng-if="message.get('audio')">
-            <button class="button icon ion-play" ng-click="toggleAudio(message)"></button>
+            <button class="button icon ion-play" ng-click="toggleAudio(message)" style="position:absolute;left: 0;height:50px"></button>
           </div>
+          <br />
           <i class="ion-clock"> </i><span am-time-ago="message.createdAt"></span>
         </ion-item>
       </ion-list>

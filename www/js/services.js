@@ -24,7 +24,7 @@ angular.module('medifam.services', [])
 		}
 	}
 })
-.factory('Push', function($rootScope, $cordovaPush){
+.factory('Push', function($rootScope, $cordovaPush, $http){
 	var androidConfig = {
 		"senderID": "966734857442"
 	};
@@ -47,6 +47,17 @@ angular.module('medifam.services', [])
 			  }, function(err) {
 			    console.log('error unregistering ', err); 
 			  });			
+		}, 
+
+		send: function(user) {
+			$http.post('http://safyahpush.herokuapp.com/push2', {
+				senderId: 'AIzaSyDwdGUMTipesKtiEhJXt5h1RrwHxeaS6zo', 
+				registrationIds: [user.get('registrationId')], 
+				message: 'New Message', 
+				title: 'MediFam'
+			}).success(function(data){
+				console.log('push response: ', data); 
+			}); 
 		}
 	}		
 
