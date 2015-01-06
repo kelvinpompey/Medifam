@@ -44,6 +44,7 @@ angular.module('medifam.controllers')
 			sentQuery.equalTo('to', $scope.currentUser);
 
 			receivedQuery.equalTo('to', user); 
+			// set messages as read 
 			receivedQuery.equalTo('from', $scope.currentUser); 
 
 			sentQuery.find().then(function(data1){

@@ -10,7 +10,7 @@ angular.module('medifam.services', [])
     }
     
 })
-.factory('Message', function(){
+.factory('Message', function($rootScope){
 	return {
 		send: function(params) {
 			var message = new Parse.Object('Message'); 
@@ -20,7 +20,18 @@ angular.module('medifam.services', [])
 			message.set("image", params.image); 
 			message.set("emergencyCode", params.emergencyCode); 
 			message.set("audio", params.audio); 
+			message.set("read", false); 
 			return message.save(); 
+		},
+
+		countUnread: function() {
+			var query = new Parse.Query('Message'); 
+			query.equalTo('to', $rootScope.currentUser); 
+			query.equalTo('read', false); 
+			query.count().then(function(n){
+				$rootScope.unread = n; 
+				console.log('unread count: ', n); 
+			});  
 		}
 	}
 })

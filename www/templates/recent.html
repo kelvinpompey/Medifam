@@ -1,0 +1,12 @@
+<ion-view title="Recent">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+    	<ion-item ng-repeat="message in messages" ng-class="{unread: message.get('read') === false}" href="#/app/messages/{{message.get('from').id}}">
+    		{{message.get('from').get('fullName')}}: {{message.get('text')}}
+    	</ion-item>
+	</ion-list>
+  </ion-content>
+</ion-view>

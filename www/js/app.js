@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('medifam', ['ionic', 'medifam.controllers', 'medifam.services', 'parse-angular','ngCordova', 'angularMoment'])
 
-.run(function($ionicPlatform, $rootScope, $state, $cordovaPush, Push, $cordovaVibration) {
+.run(function($ionicPlatform, $rootScope, $state, $cordovaPush, Push, $cordovaVibration, Message) {
     console.log('.run'); 
   $ionicPlatform.ready(function() {
       console.log('ionic ready');
@@ -53,6 +53,7 @@ angular.module('medifam', ['ionic', 'medifam.controllers', 'medifam.services', '
     
     if($rootScope.currentUser) {
         $state.go('app.specialties');     
+        Message.countUnread(); 
         //Push.register();
     }       
       
@@ -137,6 +138,15 @@ angular.module('medifam', ['ionic', 'medifam.controllers', 'medifam.services', '
         'menuContent': {
           templateUrl: "templates/messages.html",
           controller: 'MessagesCtrl'
+        }
+      }
+    })
+    .state('app.recent', {
+      url: "/recent", 
+      views: {
+        'menuContent' : {
+          templateUrl: "templates/recent.html", 
+          controller: "RecentCtrl"
         }
       }
     });

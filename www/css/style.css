@@ -57,4 +57,11 @@ body {
  border-top: solid 10px yellow;  
 }
 
+.unread {
+  font-weight: bold; 
+}
+
+.bold {
+ font-weight: bold;  
+}
 

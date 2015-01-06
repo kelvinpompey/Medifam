@@ -24,8 +24,9 @@
           Logged in as: {{currentUser.getUsername()}}
         </ion-item>          
           
-        <ion-item nav-clear menu-close href="#/app/search">
-          Search
+        <ion-item nav-clear menu-close href="#/app/recent" ng-class="{bold: unread > 0}">
+          Recent
+          <span class="badge badge-assertive">{{unread}}</span>
         </ion-item>
         <ion-item nav-clear menu-close href="#/app/browse">
           Browse
