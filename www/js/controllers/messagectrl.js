@@ -43,11 +43,15 @@ angular.module('medifam.controllers')
 			sentQuery.equalTo('from', user);
 			sentQuery.equalTo('to', $scope.currentUser);
 
-			receivedQuery.equalTo('to', user); 
-			// set messages as read 
+			receivedQuery.equalTo('to', user); 			
 			receivedQuery.equalTo('from', $scope.currentUser); 
 
 			sentQuery.find().then(function(data1){
+				// Mark messages as read 
+				data1.forEach(function(item){
+					item.set('read', true); 
+					item.save(); 
+				}); 
 				receivedQuery.find().then(function(data2){
 						for(var i = 0; i < data2.length; i++) {
 							data2[i].sender = true; 
@@ -55,6 +59,7 @@ angular.module('medifam.controllers')
 						var messages = data1.concat(data2);
 						$scope.messages = messages; 
 						console.log('messages2: ', data1); 
+						Message.countUnread(); 
 
 					}); 					
 			});		
