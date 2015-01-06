@@ -86,6 +86,11 @@ angular.module('medifam.controllers')
       newUser.setUsername($scope.registrationData.username); 
       newUser.setPassword($scope.registrationData.password); 
       newUser.setEmail($scope.registrationData.email); 
+      newUser.set('degree', $scope.registrationData.degree); 
+      newUser.set('phone', $scope.registrationData.phone);
+      newUser.set('address', $scope.registrationData.address);
+      newUser.set('university', $scope.registrationData.university);
+      newUser.set('work', $scope.registrationData.work);
       
       newUser.signUp().then(function(user){        
           console.log('user registered successfully'); 
@@ -93,6 +98,7 @@ angular.module('medifam.controllers')
           Push.register(); 
       })
       .fail(function(error){
+          $scope.registrationError = error; 
           console.log('error signing up ', error); 
       }); 
   }
