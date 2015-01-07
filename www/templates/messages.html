@@ -2,17 +2,13 @@
   <ion-nav-buttons side="left">
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
-<ion-nav-buttons side="right">
-    <button class="button button-icon icon ion-compose" ng-click="openModal()"></button>
-  </ion-nav-buttons>
-
 
   <ion-pane>
     <ion-scroll ng-style="style">
       <ion-list>
         <ion-item ng-repeat="message in messages | orderBy:'createdAt'" class="item-icon-right item-text-wrap" ng-class="{'left-margin' : message.sender, 'right-margin' : !message.sender, 'red-style': message.get('emergencyCode') === 'red', 'yellow-style': message.get('emergencyCode') === 'yellow'}">        
           <p style="font-size: 16pt">{{message.get('text')}}</p>
-          <img ng-src="{{message.get('image').url()}}" style="max-height: 200px" />
+          <img ng-if="message.get('image')" ng-src="http://proxy.boxresizer.com/convert?resize=100x100&source={{message.get('image').url()}}" style="max-height: 200px" />
           <div ng-if="message.get('audio')">
             <button class="button icon ion-play" ng-click="toggleAudio(message)" style="position:absolute;left: 0;height:50px"></button>
           </div>

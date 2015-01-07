@@ -65,7 +65,8 @@ angular.module('medifam.services', [])
 				senderId: 'AIzaSyDwdGUMTipesKtiEhJXt5h1RrwHxeaS6zo', 
 				registrationIds: [user.get('registrationId')], 
 				message: 'New Message', 
-				title: 'MediFam'
+				title: 'MediFam', 
+				collapseKey: 'medifam'
 			}).success(function(data){
 				console.log('push response: ', data); 
 			}); 

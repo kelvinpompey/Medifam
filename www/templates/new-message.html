@@ -6,16 +6,17 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doSendMessage()">
+    <form>
       <div class="list">
         <label class="item item-input">
           <textarea rows="4" ng-model="messageData.text"></textarea>          
         </label>
-        <label class="item">
-          <button class="button button-calm" type="submit">Send</button><button class="button button-calm icon ion-camera" ng-click="addPhoto()"></button>
-
-
-        </label>
+        <div class="item">          
+          <button class="button button-calm icon ion-camera" ng-click="imageSelect()"></button>
+          <button class="button button-calm icon ion-mic-a" ng-click="audioSelect()"></button>
+          <button class="button button-calm icon ion-record" ng-style="emergencyStyle" ng-click="toggleEmergency()"></button>
+          <button class="button button-calm" ng-click="broadcast()" style="position: absolute; right: 10px">Send</button>
+        </div>
       </div>
     </form>
   </ion-content>

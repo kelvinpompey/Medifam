@@ -95,7 +95,8 @@ angular.module('medifam.controllers')
       newUser.signUp().then(function(user){        
           console.log('user registered successfully'); 
           $rootScope.currentUser = Parse.User.current(); 
-          Push.register(); 
+          $state.go("app.specialties");
+          //Push.register(); 
       })
       .fail(function(error){
           $scope.registrationError = error; 

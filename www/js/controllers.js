@@ -1,6 +1,6 @@
 angular.module('medifam.controllers', ['ngCordova'])
 
-.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $cordovaPush, Push) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $ionicPopup, $timeout, $cordovaPush, Push, $state, Message) {
     
     Parse.initialize("b9x7EC9SNIUX5DB5mxrt8yzF9eduW0Js4kkR6Jcf", "pCqIyIaYhXx3sH0weqnkEKGGqo5rt3UVe6pZOJA7");
   // Form data for the login modal
@@ -49,10 +49,27 @@ angular.module('medifam.controllers', ['ngCordova'])
   };
 
   $rootScope.$on('pushNotificationReceived', function(event, notification) {
+    console.log('notification ', notification); 
+
+   var showConfirm = function() {
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'New Message',
+       template: 'You have a new message.View it now?'
+     });
+     confirmPopup.then(function(res) {
+       if(res) {
+         confirmPopup.close(); 
+         $state.go("app.recent");
+       } else {
+         confirmPopup.close(); 
+       }
+     });
+   };    
+
     switch(notification.event) {
       case 'registered':
         if (notification.regid.length > 0 ) {
-          alert('registration ID = ' + notification.regid);
+          /*alert('registration ID = ' + notification.regid); */ 
           $rootScope.currentUser.set('registrationId', notification.regid); 
           $rootScope.currentUser.save();
         }
@@ -60,7 +77,9 @@ angular.module('medifam.controllers', ['ngCordova'])
 
       case 'message':
         // this is the actual push notification. its format depends on the data model from the push server
-        alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+        //alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+        Message.countUnread(); 
+        showConfirm(); 
         break;
 
       case 'error':
@@ -96,35 +115,7 @@ angular.module('medifam.controllers', ['ngCordova'])
       {title: 'Nurses' , id: 7 }
   ];
   
-})
-
-.controller('SpecialtyDetailCtrl', function($scope, $stateParams, $ionicNavBarDelegate){
-    console.log('id: ', $stateParams.id); 
-    
-    var fetchData = function() {
-        var specialty = new Parse.Object('Specialty'); 
-        specialty.id = $stateParams.id; 
-        specialty.fetch()
-        .then(function(data){
-            console.log('specialty: ', data);
-            $ionicNavBarDelegate.setTitle(data.get('title')); 
-            $scope.specialty = data; 
-            specialty.relation('members').query().find()
-            .then(function(members){
-                console.log('members: ', members);
-                $scope.members = members; 
-            });
-        });
-
-    }
-    fetchData(); 
-    
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-})
-
-; 
+}); 
 
 
 

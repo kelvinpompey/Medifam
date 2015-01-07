@@ -1,6 +1,6 @@
 angular.module('medifam.controllers')
 .controller('MessagesCtrl', function($window, $scope, $stateParams, $ionicModal, Message, Image, $cordovaImagePicker, $ionicNavBarDelegate, $cordovaToast, $cordovaCapture, Push){
-    $scope.style = {'margin-top': '40px', height: ($window.innerHeight - 100) + 'px'}; 
+    $scope.style = {'margin-top': '40px', height: ($window.innerHeight - 120) + 'px'}; 
 	$scope.chatboxStyle = { position: 'fixed', bottom: '0px', width: '100%'}; 
 	$scope.emergencyStyle = { position: 'absolute', right: '55px', color: 'yellow'};  	
 
@@ -14,20 +14,6 @@ angular.module('medifam.controllers')
 	}
 
 	$scope.messageData = {}; 
-
-	$ionicModal.fromTemplateUrl('templates/new-message.html', {
-		scope: $scope,
-	animation: 'slide-in-up'
-	}).then(function(modal) {
-		$scope.modal = modal;
-	});
-
-	$scope.openModal = function() {
-		$scope.modal.show();
-	};
-	$scope.closeModal = function() {
-		$scope.modal.hide();
-	};
 
 	console.log('userId: ', $stateParams.id); 
 

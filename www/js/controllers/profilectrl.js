@@ -1,5 +1,5 @@
 angular.module('medifam.controllers')
-.controller('ProfileCtrl', function($scope, $timeout, $rootScope, $ionicNavBarDelegate, $ionicModal, Specialty, Push, $cordovaImagePicker){    
+.controller('ProfileCtrl', function($state, $scope, $timeout, $rootScope, $ionicNavBarDelegate, $ionicModal, Specialty, Push, $cordovaImagePicker){    
     
     console.log('imagePicker: ', window.imagePicker); 
     $scope.image = '';
@@ -161,6 +161,7 @@ angular.module('medifam.controllers')
     $scope.logout = function() {
         Parse.User.logOut(); 
         $rootScope.currentUser = Parse.User.current();        
+        $state.go('welcome');         
         Push.unregister(); 
     }
     

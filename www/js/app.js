@@ -54,7 +54,7 @@ angular.module('medifam', ['ionic', 'medifam.controllers', 'medifam.services', '
     if($rootScope.currentUser) {
         $state.go('app.specialties');     
         Message.countUnread(); 
-        //Push.register();
+        Push.register();
     }       
       
       
