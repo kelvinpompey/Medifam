@@ -45,6 +45,9 @@ angular.module('medifam.controllers')
 	}; 
 
 	$scope.broadcast = function() {
+		console.log("length: ", $scope.messageData.text.length); 
+		return; 
+		
 		$scope.members.forEach(function(user){
 			var data = {
 				text: $scope.messageData.text,

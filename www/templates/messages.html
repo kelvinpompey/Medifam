@@ -26,7 +26,7 @@
         <a class="button icon ion-camera" ng-click="imageSelect()"></a>
         <a class="button icon ion-mic-a" ng-click="audioSelect()"></a>        
         <a class="button icon ion-record" ng-style="emergencyStyle" ng-click="toggleEmergency()"></a>
-        <a class="button icon ion-paper-airplane" ng-click="doSendMessage()" style="position: absolute; right: 0"></a>        
+        <a class="button icon ion-paper-airplane" ng-click="doSendMessage()" style="position: absolute; right: 0" ng-disabled="!messageData.text"></a>        
       </div>
       
         

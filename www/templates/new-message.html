@@ -15,7 +15,7 @@
           <button class="button button-calm icon ion-camera" ng-click="imageSelect()"></button>
           <button class="button button-calm icon ion-mic-a" ng-click="audioSelect()"></button>
           <button class="button button-calm icon ion-record" ng-style="emergencyStyle" ng-click="toggleEmergency()"></button>
-          <button class="button button-calm" ng-click="broadcast()" style="position: absolute; right: 10px">Send</button>
+          <button class="button button-calm" ng-click="broadcast()" style="position: absolute; right: 10px" ng-disabled="!messageData.text">Send</button>
         </div>
       </div>
     </form>
