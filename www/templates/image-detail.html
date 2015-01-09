@@ -1,0 +1,11 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Image</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeModal()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <img ng-src="{{selectedMessage.get('image').url()}}"/>
+  </ion-content>
+</ion-modal-view>

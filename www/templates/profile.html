@@ -22,6 +22,26 @@
                     <img ng-src="http://proxy.boxresizer.com/convert?resize=100x100&source={{image}}" width='100' height='100' />
                   </div>                 
               </div>
+              <div class="row">
+                <div class="col-25 bold">Address</div>
+                <div class="col-75">{{currentUser.get('address')}}</div>
+              </div>
+              <div class="row">
+                <div class="col-25 bold">Degree</div>
+                <div class="col-75">{{currentUser.get('degree')}}</div>
+              </div> 
+              <div class="row">
+                <div class="col-25 bold">Phone</div>
+                <div class="col-75">{{currentUser.get('phone')}}</div>
+              </div>
+              <div class="row">
+                <div class="col-25 bold">University</div>
+                <div class="col-75">{{currentUser.get('university')}}</div>
+              </div>         
+              <div class="row">
+                <div class="col-25 bold">Work</div>
+                <div class="col-75">{{currentUser.get('work')}}</div>
+              </div>                                                 
             <div class="row">
                     <button class="button button-calm" ng-click="selectImage()"><i class="icon ion-camera"></i></button>                      
             </div>               

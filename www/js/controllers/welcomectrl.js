@@ -1,6 +1,6 @@
 
 angular.module('medifam.controllers')
-.controller('WelcomeCtrl', function($window, $state, $scope, $ionicModal, $timeout, $rootScope, Push, Image){  
+.controller('WelcomeCtrl', function($window, $state, $scope, $ionicModal, $timeout, $rootScope, $cordovaToast, Push, Image){  
     
     $scope.myStyle = {height: ($window.innerHeight - 100) + 'px'}; 
     Parse.initialize("b9x7EC9SNIUX5DB5mxrt8yzF9eduW0Js4kkR6Jcf", "pCqIyIaYhXx3sH0weqnkEKGGqo5rt3UVe6pZOJA7");
@@ -68,10 +68,11 @@ angular.module('medifam.controllers')
     Parse.User.logIn($scope.loginData.username, $scope.loginData.password)
     .then(function(){
       console.log('logged in successfully'); 
+      $cordovaToast.showShortCenter("Logged in successfully");
       $rootScope.currentUser = Parse.User.current(); 
-      $state.go('app.specialties');       
       delete $scope.loginError;      
       $scope.closeLogin(); 
+      $state.go('app.specialties');
       Push.register(); 
     })
     .fail(function(error){
@@ -94,8 +95,11 @@ angular.module('medifam.controllers')
       
       newUser.signUp().then(function(user){        
           console.log('user registered successfully'); 
+          $cordovaToast.showShortCenter("Registration completed successfully");
           $rootScope.currentUser = Parse.User.current(); 
+          $scope.closeRegisterModal(); 
           $state.go("app.specialties");
+
           //Push.register(); 
       })
       .fail(function(error){

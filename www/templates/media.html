@@ -1,0 +1,19 @@
+<ion-view title="Media">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+    	<ion-item ng-repeat="message in messages" ng-class="{unread: message.get('read') === false}" ng-click="itemSelected(message)">
+    		<img ng-src="http://proxy.boxresizer.com/convert?resize=50x50&source={{message.get('from').get('profileImage').url()}}"/>
+    		{{message.get('from').get('fullName')}}: {{message.get('text')}}
+        <span ng-if="message.get('audio')">
+          <span class="icon ion-play"> [Audio]</span>
+        </span>
+        <span ng-if="message.get('image')">
+          <img ng-src="http://proxy.boxresizer.com/convert?resize=200x200&source={{message.get('image').url()}}"/> 
+        </span>
+    	</ion-item>
+	</ion-list>
+  </ion-content>
+</ion-view>

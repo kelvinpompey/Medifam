@@ -149,6 +149,15 @@ angular.module('medifam', ['ionic', 'medifam.controllers', 'medifam.services', '
           controller: "RecentCtrl"
         }
       }
+    })
+    .state('app.media', {
+      url: "/media", 
+      views: {
+        'menuContent' : {
+          templateUrl: "templates/media.html", 
+          controller: "MediaCtrl"
+        }
+      }
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/welcome');
