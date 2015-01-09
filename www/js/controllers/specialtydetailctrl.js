@@ -1,5 +1,5 @@
 angular.module('medifam.controllers')
-.controller('SpecialtyDetailCtrl', function($scope, $stateParams, $ionicNavBarDelegate, $cordovaToast, $ionicModal, $cordovaCapture, Message, Push, Image){
+.controller('SpecialtyDetailCtrl', function($scope, $stateParams, $ionicNavBarDelegate, $cordovaToast, $ionicModal, $ionicLoading, $cordovaCapture, Message, Push, Image){
 
 	$ionicModal.fromTemplateUrl('templates/new-message.html', {
 		scope: $scope,
@@ -34,9 +34,11 @@ angular.module('medifam.controllers')
 		//$scope.messageData.from = $scope.currentUser;
 		//$scope.messageData.to = $scope.user;
 		//$scope.messageData.emergencyCode = $scope.emergencyStyle.color; 
+		$ionicLoading.show({template: 'Broadcasting message...'}); 
 		console.log('doSendMessage: ', $scope.messageData);
 		Message.send(data).then(function(){
 			console.log('Message sent'); 
+			$ionicLoading.hide(); 
 			if($cordovaToast.showShortCenter) {
 				$cordovaToast.showShortCenter("Message broadcast! :)");
 			}
@@ -47,7 +49,7 @@ angular.module('medifam.controllers')
 	$scope.broadcast = function() {
 		console.log("length: ", $scope.messageData.text.length); 
 		return; 
-		
+
 		$scope.members.forEach(function(user){
 			var data = {
 				text: $scope.messageData.text,
