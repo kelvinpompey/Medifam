@@ -3,6 +3,44 @@ angular.module('medifam.controllers')
     
     console.log('imagePicker: ', window.imagePicker); 
     $scope.image = '';
+
+    $scope.profileData = {
+      fullName: $scope.currentUser.get('fullName'),
+      work: $scope.currentUser.get('work'), 
+      degree: $scope.currentUser.get('degree'), 
+      university: $scope.currentUser.get('university'), 
+      address: $scope.currentUser.get('address'), 
+      phone: $scope.currentUser.get('phone'), 
+    }
+
+
+    var firstTime = true; 
+    $scope.$watch('profileData.fullName + profileData.work + profileData.phone + profileData.address + profileData.degree + profileData.university', function(newValue, oldValue){
+      console.log('profileData changed: ', newValue);       
+      if(firstTime !== true) {
+        $scope.profileData.changed = true;   
+      }
+      else {
+        firstTime = false; 
+      }     
+      
+    });
+
+    $scope.updateProfile = function() {
+
+      $scope.currentUser.set('fullName', $scope.profileData.fullName); 
+      $scope.currentUser.set('work', $scope.profileData.work); 
+      $scope.currentUser.set('degree', $scope.profileData.degree); 
+      $scope.currentUser.set('university', $scope.profileData.university); 
+      $scope.currentUser.set('address', $scope.profileData.address); 
+      $scope.currentUser.set('phone', $scope.profileData.phone); 
+      $scope.currentUser.save().then(function(){
+        $scope.profileData.changed = false; 
+      }); 
+
+    };  
+
+    $scope.profileData.changed = false; 
     $scope.selectImage = function() {
         
       var options = {

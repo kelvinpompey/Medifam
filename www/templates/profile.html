@@ -22,26 +22,41 @@
                     <img ng-src="http://proxy.boxresizer.com/convert?resize=100x100&source={{image}}" width='100' height='100' />
                   </div>                 
               </div>
-              <div class="row">
-                <div class="col-25 bold">Address</div>
-                <div class="col-75">{{currentUser.get('address')}}</div>
-              </div>
-              <div class="row">
-                <div class="col-25 bold">Degree</div>
-                <div class="col-75">{{currentUser.get('degree')}}</div>
-              </div> 
-              <div class="row">
-                <div class="col-25 bold">Phone</div>
-                <div class="col-75">{{currentUser.get('phone')}}</div>
-              </div>
-              <div class="row">
-                <div class="col-25 bold">University</div>
-                <div class="col-75">{{currentUser.get('university')}}</div>
-              </div>         
-              <div class="row">
-                <div class="col-25 bold">Work</div>
-                <div class="col-75">{{currentUser.get('work')}}</div>
-              </div>                                                 
+
+              <form>
+                <div class="list">
+                  <label class="item" style="color: red">
+                  </label>        
+                  <label class="item item-input">
+                    <span class="input-label">Name</span>
+                    <input type="text" ng-model="profileData.fullName">
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">Phone Number</span>
+                    <input type="text" ng-model="profileData.phone">
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">Address</span>
+                    <input type="text" ng-model="profileData.address">
+                  </label>         
+                  <label class="item item-input">
+                    <span class="input-label">Type of Medical Degree</span>
+                    <input type="text" ng-model="profileData.degree">
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">University</span>
+                    <input type="text" ng-model="profileData.university">
+                  </label>
+                  <label class="item item-input">
+                    <span class="input-label">Place of Work</span>
+                    <input type="text" ng-model="profileData.work">
+                  </label>         
+                  <label class="item">
+                    <button class="button button-calm" ng-click="updateProfile()" ng-disabled="!profileData.changed">Update</button>
+                  </label>
+                </div>
+              </form>
+                                                
             <div class="row">
                     <button class="button button-calm" ng-click="selectImage()"><i class="icon ion-camera"></i></button>                      
             </div>               
