@@ -48,7 +48,7 @@ angular.module('medifam.controllers')
 
 	$scope.broadcast = function() {
 		console.log("length: ", $scope.messageData.text.length); 
-		return; 
+		//return; 
 
 		$scope.members.forEach(function(user){
 			var data = {
@@ -60,7 +60,13 @@ angular.module('medifam.controllers')
 				read: false, 
 				emergencyCode: $scope.emergencyStyle.color
 			}; 
-			sendMessage(data); 
+			if($scope.currentUser.id !== user.id){
+				sendMessage(data); 
+			}
+			else {
+				console.log('skipping broadcast: sender and recipient the same'); 		
+			}
+
 
 		}); 
 	}    

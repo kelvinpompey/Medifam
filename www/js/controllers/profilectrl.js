@@ -41,6 +41,7 @@ angular.module('medifam.controllers')
     };  
 
     $scope.profileData.changed = false; 
+
     $scope.selectImage = function() {
         
       var options = {
@@ -155,6 +156,18 @@ angular.module('medifam.controllers')
       item.relation('members').add($scope.currentUser); 
       item.save(); 
   }
+
+  $scope.removeSpecialty = function(specialty) {
+    console.log('removeSpecialty: ', specialty); 
+    $scope.currentUser.relation('specialties').remove(specialty); 
+    $scope.currentUser.save().then(function(){
+      fetchUserData(); 
+    }); 
+
+    specialty.relation('members').remove($scope.currentUser);
+    specialty.save(); 
+  }; 
+
 
   $scope.statuses = [
     {title: 'Available'}, 

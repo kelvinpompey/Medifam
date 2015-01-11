@@ -55,6 +55,12 @@ angular.module('medifam.controllers')
 	fetchMessages(); 
 
 	$scope.doSendMessage = function() {
+
+		if($scope.currentUser.id === $scope.user.id) {
+			console.log("sending to self"); 
+			return; 
+		}
+
 		$scope.messageData.from = $scope.currentUser;
 		$scope.messageData.to = $scope.user;
 		$scope.messageData.emergencyCode = $scope.emergencyStyle.color; 

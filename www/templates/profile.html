@@ -22,32 +22,39 @@
                     <img ng-src="http://proxy.boxresizer.com/convert?resize=100x100&source={{image}}" width='100' height='100' />
                   </div>                 
               </div>
+            <div class="row">
+                    <button class="button button-calm" ng-click="selectImage()"><i class="icon ion-camera"></i></button>                      
+            </div>               
+            <div class="row" style="margin-top: 10px">
+                      <button class="button button-calm" ng-click="selectStatusModal()">Status</button>
+                      <div style="padding: 10px">{{status.title}}</div>                                    
+            </div>              
 
               <form>
                 <div class="list">
                   <label class="item" style="color: red">
                   </label>        
                   <label class="item item-input">
-                    <span class="input-label">Name</span>
+                    <span class="input-label bold">Name</span>
                     <input type="text" ng-model="profileData.fullName">
                   </label>
                   <label class="item item-input">
-                    <span class="input-label">Phone Number</span>
+                    <span class="input-label bold">Phone Number</span>
                     <input type="text" ng-model="profileData.phone">
                   </label>
                   <label class="item item-input">
-                    <span class="input-label">Address</span>
+                    <span class="input-label bold">Address</span>
                     <input type="text" ng-model="profileData.address">
                   </label>         
-                  <label class="item item-input">
+                  <label class="item item-input bold">
                     <span class="input-label">Type of Medical Degree</span>
                     <input type="text" ng-model="profileData.degree">
                   </label>
-                  <label class="item item-input">
+                  <label class="item item-input bold">
                     <span class="input-label">University</span>
                     <input type="text" ng-model="profileData.university">
                   </label>
-                  <label class="item item-input">
+                  <label class="item item-input bold">
                     <span class="input-label">Place of Work</span>
                     <input type="text" ng-model="profileData.work">
                   </label>         
@@ -55,15 +62,8 @@
                     <button class="button button-calm" ng-click="updateProfile()" ng-disabled="!profileData.changed">Update</button>
                   </label>
                 </div>
-              </form>
-                                                
-            <div class="row">
-                    <button class="button button-calm" ng-click="selectImage()"><i class="icon ion-camera"></i></button>                      
-            </div>               
-            <div class="row" style="margin-top: 10px">
-                      <button class="button button-calm" ng-click="selectStatusModal()">Status</button>
-                      <div style="padding: 10px">{{status.title}}</div>                                    
-            </div>
+              </form>                 
+
               
 
           </div>
@@ -71,8 +71,9 @@
               Specialties             
           </div>
           <ion-list>
-              <ion-item ng-repeat="s in userSpecialties">
+              <ion-item ng-repeat="s in userSpecialties" class="item-button-right">
                   {{s.get('title')}}
+                  <button class="button icon ion-close button-calm" ng-click="removeSpecialty(s)"></button>
               </ion-item>
           </ion-list>
           
